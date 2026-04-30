@@ -60,7 +60,7 @@ def rank_to_points(rank):
     return POINTS_SCALE.get(int(rank), 0)
 
 
-# --- Tie-breaking ---
+# --- National Jury Tie-breaking ---
 
 def _break_tie_majority(country_a, country_b, jury_ranks):
     """Count jurors who placed country_a above country_b (lower rank wins).

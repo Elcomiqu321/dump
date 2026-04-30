@@ -63,19 +63,33 @@ def write_xlsx(rows, output_path):
     wb.save(output_path)
 
 
-def main():
-    participating_countries = ["GB", "ES", "FR", "DE"]
-    voting_countries = ["FR", "GB", "DE", "ES", "PT"]
-    jurors_per_country = 3
-    output_file = "jury_votes.xlsx"
-    seed = None
+def main(P, V, J, output, seed):
+    # ---- INPUTS ----
+    participating_countries = P
+    voting_countries = V
+    jurors_per_country = J
+    output_file = output
+    seed = seed  # set to an int for reproducible output
+    # ----------------
 
     rows = simulate_jury_votes(
-        participating_countries, voting_countries, jurors_per_country, seed=seed,
+        participating_countries,
+        voting_countries,
+        jurors_per_country,
+        seed=seed,
     )
     write_xlsx(rows, output_file)
     print(f"Wrote {len(rows)} vote rows to {output_file}")
 
 
 if __name__ == "__main__":
-    main()
+
+    sf1_participating_countries = ['HR', 'FI', 'ME', 'RS', 'SE', 'BE', 'GE', 'IL', 'MD', 'PL', 'EE', 'GR', 'LT', 'PT', 'SM']
+    sf1_voting_countries = sf1_participating_countries + ['DE', 'IT']
+
+    jurornumber = 7
+    seed = 42
+
+    ouput_file = r'C:\Users\PS383WL\EY\Engagement - Starlight - ESC 2026 - Vienna\Technical Assessment\1 Scripts\2 Armand Test Folder\01. SF1 - Jury\jury_vote_sf1.xlsx'
+
+    main(P=sf1_participating_countries, V=sf1_voting_countries, output=ouput_file, J=jurornumber, seed=seed)
